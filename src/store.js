@@ -1,18 +1,12 @@
 export const initialStore=()=>{
   return{
-    message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
+    favourites:[],
+    one_character:{"name":"eric",
+    eye_color:"green",
+    hair_color:"green",
+    gender:"boy"
+    }
+
   }
 }
 
