@@ -1,26 +1,26 @@
-export const initialStore=()=>{
-  return{
-    favourites:[],
-    one_character:{"name":"eric",
-    eye_color:"green",
-    hair_color:"green",
-    gender:"boy"
-    }
-
-  }
+export const initialStore = () => {
+  return {
+    favourites: [],
+    one_character: {
+      "name": "eric",
+      eye_color: "Brown",
+      hair_color: "Black",
+      gender: "Helicopter"
+    },
+    todos: []  // creo 'todos' 
+  };
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
-
-      const { id,  color } = action.payload
+  switch (action.type) {
+    case "addFavourites":
 
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        favourites: [...store.favourites, action.favourite]
       };
+
     default:
-      throw Error('Unknown action.');
-  }    
+      throw Error("Unknown action.");
+  }
 }

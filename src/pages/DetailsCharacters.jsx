@@ -4,17 +4,17 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 
-const DetailsVehicles = () => {
+const DetailsCharacters = () => {
     const { id } = useParams();
     const { store, dispatch } = useGlobalReducer()
     useEffect(() => {
-        GetVehicle()
+        GetCharacter()
     }, [])
-    const [Vehicle, setVehicle] = useState([])
-    async function GetVehicle() {
-        fetch("https://www.swapi.tech/api/Vehicles/" + id)
+    const [Character, setCharacter] = useState([])
+    async function GetCharacter() {
+        fetch("https://www.swapi.tech/api/Characters/" + id)
             .then(res => res.json())
-            .then(data => setVehicle(data.result.properties))
+            .then(data => setCharacter(data.result.properties))
             //.then(data => console.log(data.result))
             .catch(err => console.error(err))
     }
@@ -23,12 +23,12 @@ const DetailsVehicles = () => {
         <div className="d-flex ">
             <img src="https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg" style={{ width: "400px", height: "150px" }} />
             <div >
-                {Vehicle && (
+                {Character && (
                     <>
-                        <h1>{Vehicle.name}</h1>
-                        <p>Climate: {Vehicle.climate}</p>
-                        <p>Terrain: {Vehicle.terrain}</p>
-                        <p>Population: {Vehicle.population}</p>
+                        <h1>{Character.name}</h1>
+                        <p>Climate: {Character.climate}</p>
+                        <p>Terrain: {Character.terrain}</p>
+                        <p>Population: {Character.population}</p>
                     </>
                 )}
             </div>
@@ -38,4 +38,4 @@ const DetailsVehicles = () => {
 
 
 
-export default DetailsVehicles;
+export default DetailsCharacters;

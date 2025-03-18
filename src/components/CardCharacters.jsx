@@ -4,7 +4,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 
-export const CardPlanets = ({ id, name }) => {
+export const CardCharacters = ({ id, name }) => {
     const { store, dispatch } = useGlobalReducer()
     const isFavourite = store.favourites.includes(name);
     
@@ -14,7 +14,7 @@ export const CardPlanets = ({ id, name }) => {
             <div className="card-body">
                 <h5 className="card-title">{name}</h5>
                 <div className="d-flex justify-content-between">
-                    <Link to={`/detailsplanets/${id}`} className="btn btn-outline-primary">Desea saber mas?</Link>
+                    <Link to={`/detailsCharacters/${id}`} className="btn btn-outline-primary">Desea saber mas?</Link>
                     <button
                         onClick={() => dispatch({
                             favourite: name,
