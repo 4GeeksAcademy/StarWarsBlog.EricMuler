@@ -18,17 +18,17 @@ export const Navbar = () => {
 				alt="Star Wars Logo" />
 			<div className="ml-auto">
 
-				<div class="dropdown" style={{ position: "relative" }}>
-					<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<div className="dropdown" style={{ position: "relative" }}>
+					<button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Favourites {store.favourites.length}
 					</button>
-					<ul class="dropdown-menu" style={{ right: 0, left: "auto" }}>
+					<ul className="dropdown-menu" style={{ right: 0, left: "auto" }}>
 						{store.favourites.map((favourite, index) => {
 							return (
 								<li key={index} className="d-flex justify-content-between align-items-center">{favourite}
 									<button
 										>
-										<i class="fa-solid fa-trash"></i>
+										<i className="fa-solid fa-trash"></i>
 									</button>
 								</li>
 							)

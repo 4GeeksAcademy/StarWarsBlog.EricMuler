@@ -1,28 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { CardVehicles } from "../components/CardVehicles"
-export const AllVehicles = () => {
-    useEffect(() => {
-        GetVehicles()
-     }, [])
-    const [Vehicles, setVehicles] = useState([])
-    async function GetVehicles() {
-        fetch("https://www.swapi.tech/api/Vehicles/")
-            .then(res => res.json())
-            .then(data =>setVehicles(data.results))
-            .catch(err => console.error(err))
-    }
+import CardVehicles from "../components/CardVehicles";
 
-    return (
-        <div>
-            {
-                Vehicles ? 
-                Vehicles.map((Vehicle,index)=>(
-                <CardVehicles id={Vehicle.uid} name={Vehicle.name} />
-                ))
-                :
-                <p>No ahi Vehicles</p>
-            }
-           
-        </div>
-    )
-}
+const AllVehicles = () => {
+  const [Vehicles, setVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchVehicles() {
+      try {
+        const res = await fetch("https://www.swapi.tech/api/vehicles");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        setVehicles(data.results);
+      } catch (err) {
+        console.error("Error loading Vehicles", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchVehicles();
+  }, []);
+  if (loading) {
+    return <p className="text-center mt-5">Loading Vehicles…</p>;
+  }
+  if (!Vehicles.length) {
+    return <p className="text-center mt-5">No Vehicles found.</p>;
+  }
+  return (
+    <div className="container mt-4">
+      <h2>Vehicles</h2>
+      <div className="d-flex flex-wrap gap-3">
+        {Vehicles.map((c) => (
+          <CardVehicles key={c.uid} id={c.uid} name={c.name} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default AllVehicles;
